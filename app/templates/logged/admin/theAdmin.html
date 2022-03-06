@@ -25,7 +25,8 @@
                 {% endfor %}
             {% endif %}
         </div>
-        <div class="column">
+        <button type='button' class="collapsible">Status</button>
+        <div class="content">
             <div class="row">
                 <div class="column">
                     <h2>Create A Status</h2>
@@ -47,26 +48,60 @@
                     </div>
                 </div>
             </div>
-            <button type='button' class="collapsible">Edit Status</button>
-            <div class="content">
-                <div class="headerWrap">
-                    <div class="numRows">
-                        <div class="formGroup">
-                            <select name="state" id="maxRows" class="formControl">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                            </select>
+            <div class="column">
+                <button type='button' class="collapsible">Edit Status</button>
+                <div class="content">
+                    <div class="headerWrap">
+                        <div class="numRows">
+                            <div class="formGroup">
+                                <select name="state" id="maxRows" class="formControl">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="tbSearch">
                             <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
                         </div>
                     </div>
+                    <table class="table table-striped table-class" id="table-id">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for status in statuss %}
+                                <tr>
+                                    <td>{{status.status}}</td>
+                                    <td>
+                                        <form action="/theAdmin/status/{{status.id}}/update/" method='post'>
+                                            {% csrf_token %}
+                                            <section>
+                                                <label for="status">Status</label>
+                                                <input type="text" name="status" value='{{status.status}}'>
+                                            </section>
+                                            <button><span class="a">Update</span></button>
+                                        </form>
+                                    </td>
+                                    <td><button><span class="a"><a href="/theAdmin/status/{{status.id}}/delete/">Delete</a></span></button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class='paginationContainer'>
+                        <nav>
+                          <ul class="pagination">
+                          </ul>
+                        </nav>
+                    </div>
                 </div>
-                <table class="table table-striped table-class" id="table-id">
-                    <thead></thead>
-                    <tbody></tbody>
-                </table>
             </div>
+        </div>
+        <button type='button' class="collapsible">Ownership</button>
+        <div class="content">
             <div class="row">
                 <div class="column">
                     <h2>Ownership</h2>
@@ -79,27 +114,69 @@
                         <button><span class="a">Submit</span></button>
                     </form>
                 </div>
+                <div class="column">
+                    <h2>Current Ownership types</h2>
+                    <div class="row data">
+                        {% for ownership in ownerships %}
+                            <span class="list">{{ownership.ownership}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-            <button type='button' class="collapsible">Edit Ownership</button>
-            <div class="content">
-                <div class="headerWrap">
-                    <div class="numRows">
-                        <div class="formGroup">
-                            <select name="state" id="maxRows" class="formControl">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                            </select>
+            <div class="column">
+                <button type='button' class="collapsible">Edit Ownership</button>
+                <div class="content">
+                    <div class="headerWrap">
+                        <div class="numRows">
+                            <div class="formGroup">
+                                <select name="state" id="maxRows" class="formControl">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="tbSearch">
                             <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
                         </div>
                     </div>
+                    <table class="table table-striped table-class" id="table-id">
+                        <thead>
+                            <tr>
+                                <th>Ownership</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ownership in ownerships %}
+                                <tr>
+                                    <td>{{ownership.ownership}}</td>
+                                    <td>
+                                        <form action="/theAdmin/ownership/{{ownership.id}}/update/" method='post'>
+                                            {% csrf_token %}
+                                            <section>
+                                                <label for="ownership">Ownership Type</label>
+                                                <input type="text" name="ownership" value="{{ownership.ownership}}">
+                                            </section>
+                                            <button><span class="a">Update</span></button>
+                                        </form>
+                                    </td>
+                                    <td><button><span class="a"><a href="/theAdmin/ownership/{{ownership.id}}/delete/">Delete</a></span></button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class='paginationContainer'>
+                        <nav>
+                          <ul class="pagination">
+                          </ul>
+                        </nav>
+                    </div>
                 </div>
-                <table class="table table-striped table-class" id="table-id">
-                    <thead></thead>
-                    <tbody></tbody>
-                </table>
             </div>
+        </div>
+        <button type='button' class="collapsible">Genre</button>
+        <div class="content">
             <div class="row">
                 <div class="column">
                     <h2>Genre</h2>
@@ -112,27 +189,69 @@
                         <button><span class="a">Submit</span></button>
                     </form>
                 </div>
+                <div class="column">
+                    <h2>Current Genre's</h2>
+                    <div class="row data">
+                        {% for genre in genres %}
+                            <span class="list">{{genre.genre}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-            <button type='button' class="collapsible">Edit Genre</button>
-            <div class="content">
-                <div class="headerWrap">
-                    <div class="numRows">
-                        <div class="formGroup">
-                            <select name="state" id="maxRows" class="formControl">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                            </select>
+            <div class="column">
+                <button type='button' class="collapsible">Edit Genre</button>
+                <div class="content">
+                    <div class="headerWrap">
+                        <div class="numRows">
+                            <div class="formGroup">
+                                <select name="state" id="maxRows" class="formControl">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="tbSearch">
                             <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
                         </div>
                     </div>
+                    <table class="table table-striped table-class" id="table-id">
+                        <thead>
+                            <tr>
+                                <th>Genre</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for genre in genres %}
+                                <tr>
+                                    <td>{{genre.genre}}</td>
+                                    <td>
+                                        <form action="/theAdmin/genre/{{genre.id}}/update/" method='post'>
+                                            {% csrf_token %}
+                                            <section>
+                                                <label for="genre">Genre</label>
+                                                <input type="text" name="genre" value='{{genre.genre}}'>
+                                            </section>
+                                            <button><span class="a">Update</span></button>
+                                        </form>
+                                    </td>
+                                    <td><button><span class="a"><a href="/theAdmin/genre/{{genre.id}}/delete/">Delete</a></span></button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class='paginationContainer'>
+                        <nav>
+                          <ul class="pagination">
+                          </ul>
+                        </nav>
+                    </div>
                 </div>
-                <table class="table table-striped table-class" id="table-id">
-                    <thead></thead>
-                    <tbody></tbody>
-                </table>
             </div>
+        </div>
+        <button type='button' class="collapsible">Series</button>
+        <div class="content">
             <div class="row">
                 <div class="column">
                     <h2>Series</h2>
@@ -145,8 +264,55 @@
                         <button><span class="a">Submit</span></button>
                     </form>
                 </div>
+                <div class="column">
+                    <h2>Current Series</h2>
+                    <div class="row data">
+                        {% for series in seriess %}
+                            <span class="list">{{series.name}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-            <button class="collapsible">Edit Series</button>
+            <div class="column">
+                <button class="collapsible">Edit Series</button>
+                <div class="content">
+                    <div class="headerWrap">
+                        <div class="numRows">
+                            <div class="formGroup">
+                                <select name="state" id="maxRows" class="formControl">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tbSearch">
+                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
+                        </div>
+                    </div>
+                    <table class="table table-striped table-class" id="table-id">
+                        <thead>
+                            <tr>
+                                <th>Series</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class='paginationContainer'>
+                        <nav>
+                          <ul class="pagination">
+                          </ul>
+                        </nav>
+                    </div>
+                    <div class="rowsCount">Showing 11 to 20 of 91 entries</div>
+                </div>
+            </div>
+        </div>
+
+
+            
+            
             <div class="content">
                 <div class="headerWrap">
                     <div class="numRows">
@@ -252,7 +418,6 @@
                     </form>
                 </div>
             </div>
-        </div>
     </main>
     <footer>
         {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}

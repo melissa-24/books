@@ -47,7 +47,7 @@ urlpatterns = [
     path('theAdmin/author/writer/<int:author_id>/update/', views.updateWriter),
     # Admin/Status
     path('theAdmin/status/create/', views.createStatus),
-    path('theAdmin/status/<int:status_id/update/', views.updateStatus),
+    path('theAdmin/status/<int:status_id>/update/', views.updateStatus),
     path('theAdmin/status/<int:status_id>/delete/', views.deleteStatus),
     # Admin/Ownership
     path('theAdmin/ownership/create/', views.createOwnership),

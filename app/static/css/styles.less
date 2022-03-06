@@ -55,11 +55,79 @@ body {
     }
     main {
         .flexcolumn();
-        width: 75%;
+        width: 95%;
 
         .messages {
             .flexcolumn();
             margin: .5em;
+        }
+        .collapsible {
+            background-color: @views;
+            color: @black;
+            cursor: pointer;
+            padding: 18px;
+            width: 85%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 15px;
+            margin: 2em 0;
+        }
+        .active, .collapsible:hover {
+            background-color: @black;
+            color: @views;
+        }
+        .content {
+            padding: 18px;
+            display: none;
+            overflow: hidden;
+            width: 80%;
+
+            .row {
+                .flexrow();
+                width: 100%;
+                justify-content: space-evenly;
+                align-items: flex-start;
+                margin: 1em;
+                flex-wrap: wrap;
+
+                .column {
+                    .flexcolumn();
+                    width: 40%;
+                }
+            }
+            .column {
+                .flexcolumn();
+                width: 100%;
+
+                .collapsible {
+                    background-color: @views;
+                    color: @black;
+                    cursor: pointer;
+                    padding: 18px;
+                    width: 100%;
+                    border: none;
+                    text-align: center;
+                    outline: none;
+                    font-size: 15px;
+                }
+                .active, .collapible:hover {
+                    background-color: @black;
+                    color: @views;
+                }
+                .content {
+                    margin: .5em;
+                    padding: 18px;
+                    display: none;
+                    overflow: hidden;
+                    width: 90%;
+                    background-color: @views;
+    
+                    table {
+                        margin: auto;
+                    }
+                }
+            }
         }
         .row {
             .flexrow();
@@ -109,38 +177,15 @@ body {
         }
         .column {
             .flexcolumn();
+            width: 95%;
 
             .row {
                 .flexrow();
+                width: 95%;
 
                 .column {
                     .flexcolumn();
-                }
-            }
-            .collapsible {
-                background-color: @views;
-                color: @black;
-                cursor: pointer;
-                padding: 18px;
-                width: 50%;
-                border: none;
-                text-align: center;
-                outline: none;
-                font-size: 15px;
-            }
-            .active, .collapible:hover {
-                background-color: @black;
-                color: @views;
-            }
-            .content {
-                padding: 18px;
-                display: none;
-                overflow: hidden;
-                width: 50%;
-                background-color: @views;
-
-                table {
-                    margin: auto;
+                    width: 50%;
                 }
             }
         }
