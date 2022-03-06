@@ -1,0 +1,101 @@
+@import './basic.less';
+@import './table.css';
+
+body {
+    .flexcolumn();
+    background-image: url('https://www.transparenttextures.com/patterns/brick-wall.png');
+
+    header {
+        .flexcolumn();
+
+        nav {
+            .flexrow();
+
+            .menu {
+                overflow: hidden;
+
+                button {
+                    float: left;
+                    text-align: center;
+                    padding: 14px 16px;
+                }
+                .icon {
+                    display: none;
+                }
+                .dropdown {
+                    float: left;
+                    overflow: hidden;
+
+                    .dropdownContent {
+                        display: none;
+                        position: absolute;
+                        margin-top: 2.5em;
+                        min-width: 160px;
+                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                        z-index: 1;
+                    }
+                    .dropdownContent button:hover {
+                        background-color: @formbg;
+                        color: @white;
+                    }
+                }
+                .dropdown:hover {
+                    background-color: @white;
+                    color: @formbg;
+                }
+                .dropdown:hover .dropdownContent {
+                    .flexcolumn();
+                }
+            }
+            .menu a:hover {
+                background-color: @white;
+                color: @formbg;
+            }
+        }
+    }
+    main {
+        .flexcolumn();
+        width: 75%;
+
+        .messages {
+            .flexcolumn();
+            margin: .5em;
+        }
+        .row {
+            .flexrow();
+            width: 95%;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            margin: 1em;
+            flex-wrap: wrap;
+
+            form {
+                .flexcolumn();
+                width: 300px;
+
+                section {
+                    .flexrow();
+                    justify-content: space-between;
+                    width: 95%;
+                    margin: .5em 0;
+                }
+            }
+            .column {
+                form {
+                    .flexcolumn();
+                    width: 300px;
+    
+                    section {
+                        .flexrow();
+                        justify-content: space-between;
+                        width: 95%;
+                        margin: .5em 0;
+                    }
+                }
+            }
+        }
+    }
+    footer {
+        .flexcolumn();
+    }
+}

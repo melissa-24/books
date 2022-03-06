@@ -1,0 +1,30 @@
+.pagination {
+    margin: 0;
+  }
+  
+  .pagination li:hover{
+      cursor: pointer;
+  }
+  
+  .headerWrap {
+    padding:30px 0;
+  }
+  .numRows {
+    width: 20%;
+    float:left;
+  }
+  .tbSearch{
+    width: 20%;
+    float:right;
+  }
+  .pagination-container {
+    width: 70%;
+    float:left;
+  }
+  
+  .rows_count {
+    width: 20%;
+    float:right;
+    text-align:right;
+    color: #999;
+  }

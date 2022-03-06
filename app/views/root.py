@@ -35,13 +35,13 @@ def register(request):
         password = hashedPw
     )
     request.session['user_id'] = newUser.id
-    if request.POST['permissions'] == ADMINREGCODE:
+    if request.POST['regCode'] == ADMINREGCODE:
         toUpdate = User.objects.get(id=request.session['user_id'])
         toUpdate.permissions=24
         toUpdate.save()
         messages.error(request, 'Account created')
         return redirect('/')
-    if request.POST['permissions'] == REGCODE:
+    if request.POST['regCode'] == REGCODE:
         toUpdate = User.objects.get(id=request.session['user_id'])
         toUpdate.permissions=1
         toUpdate.save()

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<body>
+    {% block menu %}
+        <span class='menu' id='myMenu'>
+            <button><a href="/">Home</a></button>
+            <div class="dropdown">
+                <button><span class="a">Books</span><i class="fa fa-caret-down"></i></button>
+                <div class="dropdownContent">
+                    <button><a href="/book/">Books</a></button>
+                    <button><a href="/author/">Authors</a></button>
+                    <button><a href="/genre/">Genre</a></button>
+                    <button><a href="/series/">Series</a></button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button><span class="a">Admin</span><i class="fa fa-caret-down"></i></button>
+                <div class="dropdownContent">
+                    <button><a href="/theAdmin/">The Admin</a></button>
+                    {% if user.permissions == 24 %}
+                        <button><a href="/admin/">Admin</a></button>
+                        <button><a href="/theAdmin/user/">Users</a></button>
+                    {% endif %}
+                    <button><a href="/theAdmin/book/">Books</a></button>
+                    <button><a href="/theAdmin/author/">Authors</a></button>
+                </div>
+            </div>
+            <button class='logReg'><a href="/logout/">Logout</a></button>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="menu()">&#9776;</a>
+        </span>
+    {% endblock menu %}
+</body>
+</html>

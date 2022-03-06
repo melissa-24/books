@@ -64,7 +64,7 @@ def viewGenre(request, genre_id):
 
 def series(request):
     seriess = Series.objects.all().values().order_by('name')
-    books = Books.objects.all().values().order_by('title')
+    books = Book.objects.all().values().order_by('title')
     if 'user_id' not in request.session:
         context = {
             'seriess': seriess,

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib import messaes
+from django.contrib import messages
 from ..models import *
 
 # Landing pages
@@ -104,7 +104,7 @@ def createGenre(request):
 
 def createAuthor(request):
     Author.objects.create(
-        firstName = request.POST['fistName'],
+        firstName = request.POST['firstName'],
         lastName = request.POST['lastName'],
     )
     messages.error(request, 'Author created')
@@ -221,11 +221,11 @@ def updateBookStatus(request, book_id):
     return redirect('/theAdmin/books/')
 
 def updateBookOwnership(request, book_id):
-    pastoUpdate = Book.objects.get(id=book_id)
+    toUpdate = Book.objects.get(id=book_id)
     toUpdate.ownership_id = request.POST['ownership']
     toUpdate.save()
     messages.error(request, "Status was updated")
-    return redirect('/theAdmin/books/')s
+    return redirect('/theAdmin/books/')
 
 def updateStory(request, book_id):
     toUpdate = Book.objects.get(id=book_id)

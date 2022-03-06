@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://images.craftsnherbs.com/logos/notebook.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Book Application</title>
+</head>
+<body>
+    <header>
+        <h1>Books</h1>
+        <nav>
+            {% block menu %} {% include 'menu/loggedMenu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <div class="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <h1>{{ message }}</h1>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <h2>Current Stats</h2>
+        <table>
+            <tr>
+                <th>Books Added</th>
+                <td>{{book}}</td>
+                <td><button class='views'><a href="/book/">View Books</a></button></td>
+            </tr>
+            <tr>
+                <th>Genre Types</th>
+                <td>{{genre}}</td>
+                <td><button class='views'><a href="/genre/">View Genre</a></button></td>
+            </tr>
+            <tr>
+                <th>Authors</th>
+                <td>{{author}}</td>
+                <td><button class='views'><a href="/author/">View Author</a></button></td>
+            </tr>
+            <tr>
+                <th>Different Series</th>
+                <td>{{series}}</td>
+                <td><button class='views'><a href="/series/">View Series</a></button></td>
+            </tr>
+        </table>
+    </main>
+    <footer>
+        {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="{% static 'js/scripts.js'%}"></script>
+</body>
+</html>

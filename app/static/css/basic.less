@@ -1,0 +1,55 @@
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+table, td, tr, th {
+    border: 1px double @formbg;
+}
+table {
+    background-color: @tablebg;
+}
+td, th, tr {
+    padding: 1em 1.5em;
+}
+table tr:nth-child(even){
+    background-color: @tablebgAlt;
+}
+a, .a {
+    text-decoration: none;
+    color: @white;
+    padding: 0.5em;
+    font-size: 1.2em;
+}
+button {
+    background-color: @formbg;
+}
+.logReg, .messages {
+    background-color: @logReg;
+}
+.views {
+    background-color: @views;
+
+    a {
+        text-decoration: none;
+        color: @black;
+        padding: .5em;
+        font-size: 1.2em;;
+    }
+}
+
+
+@white: #e2e2cc;
+@tablebg: #ecec9e86;
+@tablebgAlt: #ecec9eb2;
+@black: #000;
+@logReg:#9b0487;
+@formbg: #076e77;
+@views: #ffc0cb;

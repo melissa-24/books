@@ -15,7 +15,7 @@ def create_writer(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Book)
 def create_story(sender, instance, created, **kwargs):
     if created:
-        Story.objects.create(Book=instance)
+        Story.objects.create(book=instance)
 
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):

@@ -1,0 +1,52 @@
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+table,
+td,
+tr,
+th {
+  border: 1px double #076e77;
+}
+table {
+  background-color: #ecec9e86;
+}
+td,
+th,
+tr {
+  padding: 1em 1.5em;
+}
+table tr:nth-child(even) {
+  background-color: #ecec9eb2;
+}
+a,
+.a {
+  text-decoration: none;
+  color: #e2e2cc;
+  padding: 0.5em;
+  font-size: 1.2em;
+}
+button {
+  background-color: #076e77;
+}
+.logReg,
+.messages {
+  background-color: #9b0487;
+}
+.views {
+  background-color: #ffc0cb;
+}
+.views a {
+  text-decoration: none;
+  color: #000;
+  padding: 0.5em;
+  font-size: 1.2em;
+}

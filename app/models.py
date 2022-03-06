@@ -6,7 +6,7 @@ from django.db.models.deletion import CASCADE
 class UserManager(models.Manager):
     def validate(self, form):
         errors = {}
-        usernameCheck - self.filter(username=form['username'])
+        usernameCheck = self.filter(username=form['username'])
         if usernameCheck:
             errors['username'] = 'Username already taken'
         if form['password'] != form['confirm']:
@@ -26,7 +26,7 @@ class User(models.Model):
         return f'{self.firstName} {self.lastName}'
 
 class Profile(models.Model):
-    img = models.ImageField(upload_to='profileImgs', default='hive.jpg')
+    img = models.ImageField(upload_to='profileImgs', default='bee.png')
     user = models.OneToOneField(User, unique=True, on_delete=CASCADE)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
@@ -68,7 +68,7 @@ class Author(models.Model):
         return f'{self.firstName} {self.lastName}'
 
 class Writer(models.Model):
-    img = models.ImageField(upload_to='authorImgs', default='')
+    img = models.ImageField(upload_to='authorImgs', default='bee.png')
     author = models.OneToOneField(Author, unique=True, on_delete=CASCADE)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
@@ -103,8 +103,8 @@ class Book(models.Model):
         return self.title
 
 class Story(models.Model):
-    img = models.ImageField(upload_to='bookImgs', default='hive.jpg')
-    author = models.OneToOneField(Author, unique=True, on_delete=CASCADE)
+    img = models.ImageField(upload_to='bookImgs', default='notebook.png')
+    book = models.OneToOneField(Book, unique=True, on_delete=CASCADE)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     def __str__(self):

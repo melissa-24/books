@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://images.craftsnherbs.com/logos/notebook.png">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Book Application</title>
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <nav>
+            {% block menu %} {% include 'menu/menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <div class="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <h1>{{ message }}</h1>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+    </main>
+    <footer>
+        {% block footer %} {% include 'menus/footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="{% static 'js/scripts.js'%}"></script>
+</body>
+</html>
