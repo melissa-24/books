@@ -52,7 +52,7 @@ def users(request):
             'user': user,
             'users': users,
         }
-        return render(request, 'logged/admin/user.html')
+        return render(request, 'logged/admin/user.html', context)
 
 def adminBooks(request):
     if 'user_id' not in request.session:

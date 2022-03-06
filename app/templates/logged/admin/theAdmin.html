@@ -39,6 +39,36 @@
                     </form>
                 </div>
                 <div class="column">
+                    <h2>Current Status's</h2>
+                    <div class="row data">
+                        {% for status in statuss %}
+                            <span class='list'>{{status.status}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <button type='button' class="collapsible">Edit Status</button>
+            <div class="content">
+                <div class="headerWrap">
+                    <div class="numRows">
+                        <div class="formGroup">
+                            <select name="state" id="maxRows" class="formControl">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="tbSearch">
+                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-class" id="table-id">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="column">
                     <h2>Ownership</h2>
                     <form action="/theAdmin/ownership/create/" method='post'>
                         {% csrf_token %}
@@ -49,6 +79,28 @@
                         <button><span class="a">Submit</span></button>
                     </form>
                 </div>
+            </div>
+            <button type='button' class="collapsible">Edit Ownership</button>
+            <div class="content">
+                <div class="headerWrap">
+                    <div class="numRows">
+                        <div class="formGroup">
+                            <select name="state" id="maxRows" class="formControl">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="tbSearch">
+                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-class" id="table-id">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="row">
                 <div class="column">
                     <h2>Genre</h2>
                     <form action="/theAdmin/genre/create/" method='post'>
@@ -60,6 +112,28 @@
                         <button><span class="a">Submit</span></button>
                     </form>
                 </div>
+            </div>
+            <button type='button' class="collapsible">Edit Genre</button>
+            <div class="content">
+                <div class="headerWrap">
+                    <div class="numRows">
+                        <div class="formGroup">
+                            <select name="state" id="maxRows" class="formControl">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="tbSearch">
+                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-class" id="table-id">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="row">
                 <div class="column">
                     <h2>Series</h2>
                     <form action="/theAdmin/series/create/" method='post'>
@@ -71,6 +145,26 @@
                         <button><span class="a">Submit</span></button>
                     </form>
                 </div>
+            </div>
+            <button class="collapsible">Edit Series</button>
+            <div class="content">
+                <div class="headerWrap">
+                    <div class="numRows">
+                        <div class="formGroup">
+                            <select name="state" id="maxRows" class="formControl">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="tbSearch">
+                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-class" id="table-id">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
             </div>
             <div class="row">
                 <div class="column">
@@ -88,6 +182,8 @@
                         <button><span class="a">Submit</span></button>
                     </form>
                 </div>
+            </div>
+            <div class="row">
                 <div class="column">
                     <h2>Book</h2>
                     <form action="/theAdmin/book/create/" method='post'>
@@ -161,6 +257,7 @@
     <footer>
         {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'js/scripts.js'%}"></script>
 </body>
 </html>

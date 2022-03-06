@@ -168,6 +168,65 @@ body main .row .column form section {
   width: 95%;
   margin: 0.5em 0;
 }
+body main .row .column .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body main .row .column .data {
+  background-color: #ecec9e86;
+  padding: 1em;
+  flex-wrap: wrap;
+}
+body main .row .column .data .list {
+  padding: 0.5em;
+  margin: 0.5em;
+}
+body main .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main .column .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body main .column .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main .column .collapsible {
+  background-color: #ffc0cb;
+  color: #000;
+  cursor: pointer;
+  padding: 18px;
+  width: 50%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+}
+body main .column .active,
+body main .column .collapible:hover {
+  background-color: #000;
+  color: #ffc0cb;
+}
+body main .column .content {
+  padding: 18px;
+  display: none;
+  overflow: hidden;
+  width: 50%;
+  background-color: #ffc0cb;
+}
+body main .column .content table {
+  margin: auto;
+}
 body footer {
   display: flex;
   flex-direction: column;

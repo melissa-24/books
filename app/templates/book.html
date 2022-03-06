@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://images.craftsnherbs.com/logos/notebook.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css'%}">
     <title>Book Application</title>
 </head>
@@ -55,7 +54,7 @@
                 {% for book in books %}
                     <tr>
                         <td>{{book.title}}</td>
-                        <td><button><a href="/book/{{book.id}}/view/">View Book</a></button></td>
+                        <td><button class='views'><a href="/book/{{book.id}}/view/">View Book</a></button></td>
                     </tr>
                 {% endfor %}
             </tbody>

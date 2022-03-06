@@ -29,8 +29,8 @@ urlpatterns = [
     path('theAdmin/user/<int:user_id>/update/', views.updateUser),
     path('theAdmin/user/<int:user_id>/admin/update/', views.updateAdmin),
     path('theAdmin/user/<int:user_id>/permission/update/', views.updatePermission),
-    path('theAdmin/user/profile/<int:user_id>/view/', views.profile),
-    path('theAdmin/user/profile/<int:user_id>/update/', views.updateProfile),
+    path('theAdmin/user/<int:user_id>/view/', views.profile),
+    path('theAdmin/user/<int:user_id>/profile/update/', views.updateProfile),
     # Admin/Book
     path('theAdmin/book/', views.adminBooks),
     path('theAdmin/book/create/', views.createBook),

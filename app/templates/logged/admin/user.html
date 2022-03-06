@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://images.craftsnherbs.com/logos/notebook.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css'%}">
     <title>Book Application</title>
 </head>
@@ -24,11 +25,26 @@
                 {% endfor %}
             {% endif %}
         </div>
-        
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>View</th>
+            </tr>
+            {% for u in users %}
+                <tr>
+                    <td>{{u.username}}</td>
+                    <td>{{u.firstName}} {{u.lastName}}</td>
+                    <td><button class='views'><a href="/theAdmin/user/{{u.id}}/view/">View</a></button></td>
+                </tr>
+            {% endfor %}
+        </table>
+
     </main>
     <footer>
         {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'js/scripts.js'%}"></script>
 </body>
 </html>

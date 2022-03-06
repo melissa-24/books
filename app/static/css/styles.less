@@ -92,6 +92,56 @@ body {
                         margin: .5em 0;
                     }
                 }
+                .row {
+                    .flexrow();
+                }
+                .data {
+                    background-color: @tablebg;
+                    padding: 1em;
+                    flex-wrap: wrap;
+
+                    .list {
+                        padding: .5em;
+                        margin: .5em;
+                    }
+                }
+            }
+        }
+        .column {
+            .flexcolumn();
+
+            .row {
+                .flexrow();
+
+                .column {
+                    .flexcolumn();
+                }
+            }
+            .collapsible {
+                background-color: @views;
+                color: @black;
+                cursor: pointer;
+                padding: 18px;
+                width: 50%;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 15px;
+            }
+            .active, .collapible:hover {
+                background-color: @black;
+                color: @views;
+            }
+            .content {
+                padding: 18px;
+                display: none;
+                overflow: hidden;
+                width: 50%;
+                background-color: @views;
+
+                table {
+                    margin: auto;
+                }
             }
         }
     }
