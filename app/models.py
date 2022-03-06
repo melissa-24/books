@@ -45,6 +45,13 @@ class Status(models.Model):
     def __str__(self):
         return {self.status}
 
+class Ownership(models.Model):
+    ownership = models.CharField(max_length=255)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return {self.ownership}
+
 class Genre(models.Model):
     genre = models.CharField(max_length=255)
     createdAt = models.DateTimeField(auto_now_add=True)
@@ -87,6 +94,7 @@ class Book(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, related_name='bookUser', on_delete=CASCADE)
     status = models.ForeignKey(Status, related_name='bookStatus', on_delete=CASCADE, blank=True)
+    ownership = models.ForeignKey(Ownership, related_name='bookOwnership', on_delete=CASCADE, blank=True)
     genre = models.ForeignKey(Genre, related_name='bookGenre', on_delete=CASCADE, blank=True)
     series = models.ForeignKey(Series, related_name='bookSeries', on_delete=CASCADE, blank=True)
     sequence = models.IntegerField(blank=True)
