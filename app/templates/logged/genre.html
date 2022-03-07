@@ -47,7 +47,6 @@
             <thead>
                 <tr>
                     <th>Genre Name</th>
-                    <th>Books In Genre</th>
                     <th>View</th>
                 </tr>
             </thead>
@@ -55,7 +54,6 @@
                 {% for genre in genres %}
                     <tr>
                         <td>{{genre.genre}}</td>
-                        <td></td>
                         <td><button class='views'><a href="/genre/{{genre.id}}/view/">View Books</a></button></td>
                     </tr>
                 {% endfor %}
@@ -74,5 +72,6 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'js/scripts.js'%}"></script>
+    <script src="{% static 'js/tables.js'%}"></script>
 </body>
 </html>

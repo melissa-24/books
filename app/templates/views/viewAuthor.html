@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1></h1>
+        <h1>{{author.firstName}} {{author.lastName}}</h1>
         <nav>
             {% block menu %} {% include 'menu/menu.html' %} {% endblock menu %}
         </nav>
@@ -25,7 +25,78 @@
                 {% endfor %}
             {% endif %}
         </div>
-        
+        <h1>{{author.firstName}} {{author.lastName}}</h1>
+        <img src="{{author.writer.img.url}}" alt="{{author.firstName}}">
+        <div class="headerWrap">
+            <div class="numRows">	
+                <div class="formGroup"> 
+                    <select class  ="formControl" name="state" id="maxRows">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+            </div>
+            <div class="tbSearch">
+                <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
+            </div>
+        </div>
+        <table class="table table-striped table-class" id= "table-id">
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Genre</th>
+                    <th>Series</th>
+                    <th>Status</th>
+                    <th>Ownership</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    {% if author.id == book.author_id %}
+                        <tr>
+                            <td><button class='views'><a href="/book/{{book.id}}/view/">{{book.title}}</a></button></td>
+                            <td>
+                                {% for genre in genres %}
+                                    {% if book.genre_id == genre.id %}
+                                        {{genre.genre}}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for series in seriess %}
+                                    {% if book.series_id == series.id %}
+                                        {{series.name}}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for status in statuss %}
+                                    {% if book.status_id == status.id %}
+                                        {{status.status}}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for ownership in ownerships %}
+                                    {% if book.ownership_id == ownership.id %}
+                                        {{ownership.ownership}}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class='pagination-container'>
+            <nav>
+              <ul class="pagination">
+              </ul>
+            </nav>
+        </div>
+        <div class="rows_count">Showing 11 to 20 of 91 entries</div>
     </main>
     <footer>
         {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}

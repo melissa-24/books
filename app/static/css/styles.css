@@ -51,6 +51,9 @@ button {
   padding: 0.5em;
   font-size: 1.2em;
 }
+img {
+  max-width: 300px;
+}
 body {
   display: flex;
   flex-direction: column;
@@ -148,6 +151,9 @@ body main .content {
   overflow: hidden;
   width: 80%;
 }
+body main .content table {
+  margin: auto;
+}
 body main .content .row {
   display: flex;
   flex-direction: row;
@@ -227,6 +233,12 @@ body main .row form section {
   width: 95%;
   margin: 0.5em 0;
 }
+body main .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 body main .row .column form {
   display: flex;
   flex-direction: column;
@@ -235,6 +247,35 @@ body main .row .column form {
   width: 300px;
 }
 body main .row .column form section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  margin: 0.5em 0;
+}
+body main .row .column .book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
+body main .row .column .book .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+body main .row .column .book .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main .row .column .book .row .column section {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -278,6 +319,15 @@ body main .column .row .column {
   justify-content: center;
   align-items: center;
   width: 50%;
+}
+body main .data {
+  background-color: #ecec9e86;
+  padding: 1em;
+  flex-wrap: wrap;
+}
+body main .data .list {
+  padding: 0.5em;
+  margin: 0.5em;
 }
 body footer {
   display: flex;

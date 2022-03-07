@@ -47,7 +47,6 @@
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>Books by Author</th>
                     <th>View</th>
                 </tr>
             </thead>
@@ -55,7 +54,6 @@
                 {% for author in authors %}
                     <tr>
                         <td>{{author.firstName}} {{author.lastName}}</td>
-                        <td></td>
                         <td><button class='views'><a href="/author/{{author.id}}/view/">View Books</a></button></td>
                     </tr>
                 {% endfor %}
@@ -74,5 +72,6 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'js/scripts.js'%}"></script>
+    <script src="{% static 'js/tables.js'%}"></script>
 </body>
 </html>

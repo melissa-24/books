@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://images.craftsnherbs.com/logos/notebook.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Book Application</title>
+</head>
+<body>
+    <header>
+        <h1>{{author.firstName}} {{author.lastName}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu/loggedMenu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <div class="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <h1>{{ message }}</h1>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button><span class="list"><a href="/theAdmin/author/">Back to Authors</a></span></button>
+        <h1>{{author.firstName}} {{author.lastName}}</h1>
+        <img src="{{author.writer.img.url}}" alt="{{author.firstName}}">
+        <button type='button' class="collapsible">Update Author</button>
+        <div class="content">
+            <div class="column">
+                <h2>Update Author</h2>
+                <form action="/theAdmin/author/{{author.id}}/update/" method='post'>
+                    {% csrf_token %}
+                    <section>
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" value='{{author.firstName}}'>
+                    </section>
+                    <section>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="lastName" value='{{author.lastName}}'>
+                    </section>
+                    <button><span class="a">Update</span></button>
+                </form>
+            </div>
+        </div>
+        <button type='button' class="collapsible">Update Author Image</button>
+        <div class="content">
+            <div class="column">
+                <h2>Update Author Img</h2>
+                <form action="/theAdmin/author/{{author.id}}/writer/update/" method='post' enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <section>
+                        <label for="img">Upload Image</label>
+                        <input type="file" name="img" required>
+                    </section>
+                    <button><span class="a">Update Img</span></button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/scripts.js'%}"></script>
+</body>
+</html>

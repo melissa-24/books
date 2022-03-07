@@ -47,10 +47,18 @@ def genre(request):
 def viewGenre(request, genre_id):
     genre = Genre.objects.get(id=genre_id)
     books = Book.objects.all().values()
+    authors = Author.objects.all().values().order_by('lastName')
+    statuss = Status.objects.all().values()
+    ownerships = Ownership.objects.all().values()
+    seriess = Series.objects.all().values()
     if 'user_id' not in request.session:
         context = {
             'genre': genre,
-            'books': books
+            'books': books,
+            'authors': authors,
+            'statuss': statuss,
+            'ownerships': ownerships,
+            'seriess': seriess,
         }
         return render(request, 'views/viewGenre.html', context)
     else:
@@ -58,7 +66,11 @@ def viewGenre(request, genre_id):
         context = {
             'user': user,
             'genre': genre,
-            'books': books
+            'books': books,
+            'authors': authors,
+            'statuss': statuss,
+            'ownerships': ownerships,
+            'seriess': seriess,
         }
         return render(request, 'logged/views/viewGenre.html', context)
 
@@ -82,10 +94,18 @@ def series(request):
 def viewSeries(request, series_id):
     series = Series.objects.get(id=series_id)
     books = Book.objects.all().values().order_by('title')
+    genres = Genre.objects.all().values()
+    authors = Author.objects.all().values().order_by('lastName')
+    statuss = Status.objects.all().values()
+    ownerships = Ownership.objects.all().values()
     if 'user_id' not in request.session:
         context = {
             'series': series,
             'books': books,
+            'genres': genres,
+            'authors': authors,
+            'statuss': statuss,
+            'ownerships': ownerships,
         }
         return render(request, 'views/viewSeries.html', context)
     else:
@@ -94,6 +114,10 @@ def viewSeries(request, series_id):
             'user': user,
             'series': series,
             'books': books,
+            'genres': genres,
+            'authors': authors,
+            'statuss': statuss,
+            'ownerships': ownerships,
         }
         return render(request, 'logged/views/viewSeries.html', context)
 
@@ -118,10 +142,18 @@ def author(request):
 def viewAuthor(request, author_id):
     author = Author.objects.get(id=author_id)
     books = Book.objects.all().values().order_by('title')
+    seriess = Series.objects.all().values()
+    genres = Genre.objects.all().values()
+    statuss = Status.objects.all().values()
+    ownerships = Ownership.objects.all().values()
     if 'user_id' not in request.session:
         context = {
             'author': author,
             'books': books,
+            'seriess': seriess,
+            'genres': genres,
+            'statuss': statuss,
+            'ownerships': ownerships,
         }
         return render(request, 'views/viewAuthor.html', context)
     else:
@@ -130,6 +162,10 @@ def viewAuthor(request, author_id):
             'user': user,
             'author': author,
             'books': books,
+            'seriess': seriess,
+            'genres': genres,
+            'statuss': statuss,
+            'ownerships': ownerships,
         }
         return render(request, 'logged/views/viewAuthor.html', context)
 
@@ -162,7 +198,7 @@ def viewBook(request, book_id):
     authors = Author.objects.all().values()
     seriess = Series.objects.all().values()
     genres = Genre.objects.all().values()
-    statuses = Status.objects.all().values()
+    statuss = Status.objects.all().values()
     ownerships = Ownership.objects.all().values()
     if 'user_id' not in request.session:
         context = {
@@ -170,7 +206,7 @@ def viewBook(request, book_id):
             'authors': authors,
             'seriess': seriess,
             'genres': genres,
-            'statuses': statuses,
+            'statuss': statuss,
             'ownerships': ownerships,
         }
         return render(request, 'views/viewBook.html', context)
@@ -182,7 +218,7 @@ def viewBook(request, book_id):
             'authors': authors,
             'seriess': seriess,
             'genres': genres,
-            'statuses': statuses,
+            'statuss': statuss,
             'ownerships': ownerships,
         }
         return render(request, 'logged/views/viewBook.html', context)

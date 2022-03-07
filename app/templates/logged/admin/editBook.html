@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://images.craftsnherbs.com/logos/notebook.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Book Application</title>
+</head>
+<body>
+    <header>
+        <h1>{{book.title}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu/loggedMenu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <div class="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <h1>{{ message }}</h1>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button><span class="list"><a href="/theAdmin/book/">Back to Books</a></span></button>
+        <h1>{{book.title}}</h1>
+        {% for author in authors %}
+            {% if book.author_id == author.id %}
+                <h3>Written by {{author.firstName}} {{author.lastName}}</h3>
+            {% endif %}
+        {% endfor %}
+        <img src="{{book.story.img.url}}" alt="{{book.title}}">
+        <textarea cols="50" rows="10" disabled>{{book.description}}</textarea>
+        <div class="row">
+            {% for series in seriess %}
+                {% if book.series_id == series.id %}
+                    <p>{{book.title}} is book #{{book.sequence}} in the {{series.name}} Series</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for status in statuss %}
+                {% if book.status_id == status.id %}
+                    <p>Reading status is {{status.status}}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for ownership in ownerships %}
+                {% if book.ownership_id == ownership.id %}
+                    <p>Book is {{ownership.ownership}}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <!-- Update Basic Book Info -->
+        <button type='button' class="collapsible">Update Book</button>
+        <div class="content">
+            <div class="column">
+                <h2>Update Book</h2>
+                <form class='book' action="/theAdmin/book/{{book.id}}/update/" method='post'>
+                    {% csrf_token %}
+                    <div class="row">
+                        <section>
+                            <label for="title">Book Title</label>
+                            <input type="text" name="title" value='{{book.title}}'>
+                        </section>
+                        <section>
+                            <label for="description">Description</label>
+                            <textarea name="description" cols="30" rows="10">{{book.description}}</textarea>
+                        </section>
+                    </div>
+                    <button><span class="a">Update</span></button>
+                </form>
+            </div>
+        </div>
+        <!-- Update Ownership type -->
+        <button type='button' class="collapsible">Update Book Ownership</button>
+        <div class="content">
+            <div class="column">
+                <h2>Update Book</h2>
+                <section>
+                    {% for ownership in ownerships %}
+                        {% if book.ownership_id == ownership.id %}
+                            <label for="ownership">Current Value: {{ownership.ownership}}</label>
+                        {% endif %}
+                    {% endfor %}
+                </section>
+                <form class='book' action="/theAdmin/book/{{book.id}}/ownership/update/" method='post'>
+                    {% csrf_token %}
+                    <div class="row">
+                        <section>
+                            <label for="ownership">Ownership</label>
+                            <select name="ownership">
+                                <option value=""></option>
+                                {% for ownership in ownerships %}
+                                    <option value="{{ownership.id}}">{{ownership.ownership}}</option>
+                                {% endfor %}
+                            </select>
+                        </section>
+                    </div>
+                    <button><span class="a">Update</span></button>
+                </form>
+            </div>
+        </div>
+        <!-- Update Book Status -->
+        <button type='button' class="collapsible">Update Book Status</button>
+        <div class="content">
+            <div class="column">
+                <h2>Update Book</h2>
+                <section>
+                    {% for status in statuss %}
+                        {% if book.status_id == status.id %}
+                            <label for="status">Current value: {{status.status}}</label>
+                        {% endif %} 
+                    {% endfor %}
+                </section>
+                <form class='book' action="/theAdmin/book/{{book.id}}/status/update/" method='post'>
+                    {% csrf_token %}
+                    <div class="row">
+                        <section>
+                            <label for="status">Current Read Status</label>
+                            <select name="status">
+                                <option value=""></option>
+                                {% for status in statuss %}
+                                    <option value="{{status.id}}">{{status.status}}</option>
+                                {% endfor %}
+                            </select>
+                        </section>
+                    </div>
+                    <button><span class="a">Update</span></button>
+                </form>
+            </div>
+        </div>
+        <!-- Update Book Images -->
+        <button type='button' class="collapsible">Update Book Image</button>
+        <div class="content">
+            <div class="column">
+                <h2>Update Book Img</h2>
+                <form action="/theAdmin/book/{{book.id}}/story/update/" method='post' enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <section>
+                        <label for="img">Upload Image</label>
+                        <input type="file" name="img" required>
+                    </section>
+                    <button><span class="a">Update Img</span></button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/scripts.js'%}"></script>
+</body>
+</html>

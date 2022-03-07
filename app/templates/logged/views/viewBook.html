@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1></h1>
+        <h1>{{book.title}}</h1>
         <nav>
             {% block menu %} {% include 'menu/loggedMenu.html' %} {% endblock menu %}
         </nav>
@@ -25,7 +25,35 @@
                 {% endfor %}
             {% endif %}
         </div>
-        
+        <h1>{{book.title}}</h1>
+        {% for author in authors %}
+            {% if book.author_id == author.id %}
+                <h3>Written by {{author.firstName}} {{author.lastName}}</h3>
+            {% endif %}
+        {% endfor %}
+        <img src="{{book.story.img.url}}" alt="{{book.title}}">
+        <textarea cols="50" rows="10" disabled>{{book.description}}</textarea>
+        <div class="row">
+            {% for series in seriess %}
+                {% if book.series_id == series.id %}
+                    <p>{{book.title}} is book #{{book.sequence}} in the {{series.name}} Series</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for status in statuss %}
+                {% if book.status_id == status.id %}
+                    <p>Reading status is {{status.status}}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for ownership in ownerships %}
+                {% if book.ownership_id == ownership.id %}
+                    <p>Book is {{ownership.ownership}}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
     </main>
     <footer>
         {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}

@@ -83,6 +83,10 @@ body {
             overflow: hidden;
             width: 80%;
 
+            table {
+                margin: auto;
+            }
+
             .row {
                 .flexrow();
                 width: 100%;
@@ -149,15 +153,37 @@ body {
                 }
             }
             .column {
+                .flexcolumn();
+
                 form {
                     .flexcolumn();
                     width: 300px;
-    
+
                     section {
                         .flexrow();
                         justify-content: space-between;
                         width: 95%;
                         margin: .5em 0;
+                    }
+                }
+                .book {
+                    .flexcolumn();
+                    width: 85%;
+
+                    .row {
+                        .flexrow();
+                        flex-wrap: wrap;
+
+                        .column {
+                            .flexcolumn();
+
+                            section {
+                                .flexrow();
+                                justify-content: space-between;
+                                width: 95%;
+                                margin: .5em 0;
+                            }
+                        }
                     }
                 }
                 .row {
@@ -187,6 +213,16 @@ body {
                     .flexcolumn();
                     width: 50%;
                 }
+            }
+        }
+        .data {
+            background-color: @tablebg;
+            padding: 1em;
+            flex-wrap: wrap;
+
+            .list {
+                padding: .5em;
+                margin: .5em;
             }
         }
     }

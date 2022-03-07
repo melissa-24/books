@@ -25,6 +25,7 @@
                 {% endfor %}
             {% endif %}
         </div>
+        <!-- Status Section -->
         <button type='button' class="collapsible">Status</button>
         <div class="content">
             <div class="row">
@@ -51,55 +52,33 @@
             <div class="column">
                 <button type='button' class="collapsible">Edit Status</button>
                 <div class="content">
-                    <div class="headerWrap">
-                        <div class="numRows">
-                            <div class="formGroup">
-                                <select name="state" id="maxRows" class="formControl">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="tbSearch">
-                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
-                        </div>
-                    </div>
-                    <table class="table table-striped table-class" id="table-id">
-                        <thead>
+                    <table>
+                        <tr>
+                            <th>Status</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        {% for status in statuss %}
                             <tr>
-                                <th>Status</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <td>{{status.status}}</td>
+                                <td>
+                                    <form action="/theAdmin/status/{{status.id}}/update/" method='post'>
+                                        {% csrf_token %}
+                                        <section>
+                                            <label for="status">Status</label>
+                                            <input type="text" name="status" value='{{status.status}}'>
+                                        </section>
+                                        <button><span class="a">Update</span></button>
+                                    </form>
+                                </td>
+                                <td><button><span class="a"><a href="/theAdmin/status/{{status.id}}/delete/">Delete</a></span></button></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for status in statuss %}
-                                <tr>
-                                    <td>{{status.status}}</td>
-                                    <td>
-                                        <form action="/theAdmin/status/{{status.id}}/update/" method='post'>
-                                            {% csrf_token %}
-                                            <section>
-                                                <label for="status">Status</label>
-                                                <input type="text" name="status" value='{{status.status}}'>
-                                            </section>
-                                            <button><span class="a">Update</span></button>
-                                        </form>
-                                    </td>
-                                    <td><button><span class="a"><a href="/theAdmin/status/{{status.id}}/delete/">Delete</a></span></button></td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
+                        {% endfor %}
                     </table>
-                    <div class='paginationContainer'>
-                        <nav>
-                          <ul class="pagination">
-                          </ul>
-                        </nav>
-                    </div>
                 </div>
             </div>
         </div>
+        <!-- Ownership Section -->
         <button type='button' class="collapsible">Ownership</button>
         <div class="content">
             <div class="row">
@@ -126,55 +105,33 @@
             <div class="column">
                 <button type='button' class="collapsible">Edit Ownership</button>
                 <div class="content">
-                    <div class="headerWrap">
-                        <div class="numRows">
-                            <div class="formGroup">
-                                <select name="state" id="maxRows" class="formControl">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="tbSearch">
-                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
-                        </div>
-                    </div>
-                    <table class="table table-striped table-class" id="table-id">
-                        <thead>
+                    <table>
+                        <tr>
+                            <th>Ownership</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        {% for ownership in ownerships %}
                             <tr>
-                                <th>Ownership</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <td>{{ownership.ownership}}</td>
+                                <td>
+                                    <form action="/theAdmin/ownership/{{ownership.id}}/update/" method='post'>
+                                        {% csrf_token %}
+                                        <section>
+                                            <label for="ownership">Ownership Type</label>
+                                            <input type="text" name="ownership" value="{{ownership.ownership}}">
+                                        </section>
+                                        <button><span class="a">Update</span></button>
+                                    </form>
+                                </td>
+                                <td><button><span class="a"><a href="/theAdmin/ownership/{{ownership.id}}/delete/">Delete</a></span></button></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for ownership in ownerships %}
-                                <tr>
-                                    <td>{{ownership.ownership}}</td>
-                                    <td>
-                                        <form action="/theAdmin/ownership/{{ownership.id}}/update/" method='post'>
-                                            {% csrf_token %}
-                                            <section>
-                                                <label for="ownership">Ownership Type</label>
-                                                <input type="text" name="ownership" value="{{ownership.ownership}}">
-                                            </section>
-                                            <button><span class="a">Update</span></button>
-                                        </form>
-                                    </td>
-                                    <td><button><span class="a"><a href="/theAdmin/ownership/{{ownership.id}}/delete/">Delete</a></span></button></td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
+                        {% endfor %}
                     </table>
-                    <div class='paginationContainer'>
-                        <nav>
-                          <ul class="pagination">
-                          </ul>
-                        </nav>
-                    </div>
                 </div>
             </div>
         </div>
+        <!-- Genre Section -->
         <button type='button' class="collapsible">Genre</button>
         <div class="content">
             <div class="row">
@@ -201,55 +158,33 @@
             <div class="column">
                 <button type='button' class="collapsible">Edit Genre</button>
                 <div class="content">
-                    <div class="headerWrap">
-                        <div class="numRows">
-                            <div class="formGroup">
-                                <select name="state" id="maxRows" class="formControl">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="tbSearch">
-                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
-                        </div>
-                    </div>
-                    <table class="table table-striped table-class" id="table-id">
-                        <thead>
+                    <table>
+                        <tr>
+                            <th>Genre</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        {% for genre in genres %}
                             <tr>
-                                <th>Genre</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <td>{{genre.genre}}</td>
+                                <td>
+                                    <form action="/theAdmin/genre/{{genre.id}}/update/" method='post'>
+                                        {% csrf_token %}
+                                        <section>
+                                            <label for="genre">Genre</label>
+                                            <input type="text" name="genre" value='{{genre.genre}}'>
+                                        </section>
+                                        <button><span class="a">Update</span></button>
+                                    </form>
+                                </td>
+                                <td><button><span class="a"><a href="/theAdmin/genre/{{genre.id}}/delete/">Delete</a></span></button></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for genre in genres %}
-                                <tr>
-                                    <td>{{genre.genre}}</td>
-                                    <td>
-                                        <form action="/theAdmin/genre/{{genre.id}}/update/" method='post'>
-                                            {% csrf_token %}
-                                            <section>
-                                                <label for="genre">Genre</label>
-                                                <input type="text" name="genre" value='{{genre.genre}}'>
-                                            </section>
-                                            <button><span class="a">Update</span></button>
-                                        </form>
-                                    </td>
-                                    <td><button><span class="a"><a href="/theAdmin/genre/{{genre.id}}/delete/">Delete</a></span></button></td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
+                        {% endfor %}
                     </table>
-                    <div class='paginationContainer'>
-                        <nav>
-                          <ul class="pagination">
-                          </ul>
-                        </nav>
-                    </div>
                 </div>
             </div>
         </div>
+        <!-- Series Section -->
         <button type='button' class="collapsible">Series</button>
         <div class="content">
             <div class="row">
@@ -276,148 +211,32 @@
             <div class="column">
                 <button class="collapsible">Edit Series</button>
                 <div class="content">
-                    <div class="headerWrap">
-                        <div class="numRows">
-                            <div class="formGroup">
-                                <select name="state" id="maxRows" class="formControl">
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="tbSearch">
-                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
-                        </div>
-                    </div>
-                    <table class="table table-striped table-class" id="table-id">
-                        <thead>
+                    <table>
+                        <tr>
+                            <th>Series</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        {% for series in seriess %}
                             <tr>
-                                <th>Series</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <td>{{series.name}}</td>
+                                <td>
+                                    <form action="/theAdmin/series/{{series.id}}/update/" method='post'>
+                                        {% csrf_token %}
+                                        <section>
+                                            <label for="name">Series Name</label>
+                                            <input type="text" name="name" value='{{series.name}}'>
+                                        </section>
+                                        <button><span class="a">Update</span></button>
+                                    </form>
+                                </td>
+                                <td><button><span class="a"><a href="/theAdmin/series/{{series.id}}/delete/">Delete</a></span></button></td>
                             </tr>
-                        </thead>
-                        <tbody></tbody>
+                        {% endfor %}
                     </table>
-                    <div class='paginationContainer'>
-                        <nav>
-                          <ul class="pagination">
-                          </ul>
-                        </nav>
-                    </div>
-                    <div class="rowsCount">Showing 11 to 20 of 91 entries</div>
                 </div>
             </div>
         </div>
-
-
-            
-            
-            <div class="content">
-                <div class="headerWrap">
-                    <div class="numRows">
-                        <div class="formGroup">
-                            <select name="state" id="maxRows" class="formControl">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-                        <div class="tbSearch">
-                            <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search.." class="formControl">
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-striped table-class" id="table-id">
-                    <thead></thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <h2>Author</h2>
-                    <form action="/theAdmin/author/create/" method='post'>
-                        {% csrf_token %}
-                        <section>
-                            <label for="firstName">First Name</label>
-                            <input type="text" name="firstName">
-                        </section>
-                        <section>
-                            <label for="lastName">Last Name</label>
-                            <input type="text" name="lastName">
-                        </section>
-                        <button><span class="a">Submit</span></button>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <h2>Book</h2>
-                    <form action="/theAdmin/book/create/" method='post'>
-                        {% csrf_token %}
-                        <section>
-                            <label for="title">Book Title</label>
-                            <input type="text" name="title">
-                        </section>
-                        <section>
-                            <label for="description">Description</label>
-                            <textarea name="description" cols="30" rows="10"></textarea>
-                        </section>
-                        <section>
-                            <input type="hidden" name="user" value='{{user.id}}'>
-                        </section>
-                        <section>
-                            <label for="status">Current Read Status</label>
-                            <select name="status">
-                                <option value=""></option>
-                                {% for status in statuss %}
-                                    <option value="{{status.id}}">{{status.status}}</option>
-                                {% endfor %}
-                            </select>
-                        </section>
-                        <section>
-                            <label for="ownership">Ownership</label>
-                            <select name="ownership">
-                                <option value=""></option>
-                                {% for ownership in ownerships %}
-                                    <option value="{{ownership.id}}">{{ownership.ownership}}</option>
-                                {% endfor %}
-                            </select>
-                        </section>
-                        <section>
-                            <label for="genre">Genre</label>
-                            <select name="genre">
-                                <option value=""></option>
-                                {% for genre in genres %}
-                                    <option value="{{genre.id}}">{{genre.genre}}</option>
-                                {% endfor %}
-                            </select>
-                        </section>
-                        <section>
-                            <label for="series">Part of Series</label>
-                            <select name="series">
-                                <option value=""></option>
-                                {% for series in seriess %}
-                                    <option value="{{series.id}}">{{series.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </section>
-                        <section>
-                            <label for="sequence">Sequence in Series</label>
-                            <input type="number" name="sequence">
-                        </section>
-                        <section>
-                            <label for="author">Author</label>
-                            <select name="author">
-                                <option value=""></option>
-                                {% for author in authors %}
-                                    <option value="{{author.id}}">{{author.firstName}} {{author.lastName}}</option>
-                                {% endfor %}
-                            </select>
-                        </section>
-                        <button><span class="a">Submit</span></button>
-                    </form>
-                </div>
-            </div>
     </main>
     <footer>
         {% block footer %} {% include 'menu/footer.html' %} {% endblock footer %}

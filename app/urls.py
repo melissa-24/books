@@ -34,17 +34,19 @@ urlpatterns = [
     # Admin/Book
     path('theAdmin/book/', views.adminBooks),
     path('theAdmin/book/create/', views.createBook),
+    path('theAdmin/book/<int:book_id>/edit/', views.editBook),
     path('theAdmin/book/<int:book_id>/update/', views.updateBook),
     path('theAdmin/book/<int:book_id>/status/update/', views.updateBookStatus),
     path('theAdmin/book/<int:book_id>/ownership/update/', views.updateBookOwnership),
+    path('theAdmin/book/<int:book_id>/story/update/', views.updateStory),
     path('theAdmin/book/<int:book_id>/delete/', views.deleteBook),
-    path('theAdmin/book/story/<int:book_id>/update/', views.updateStory),
     # Admin/Author
     path('theAdmin/author/', views.adminAuthors),
     path('theAdmin/author/create/', views.createAuthor),
+    path('theAdmin/author/<int:author_id>/edit/', views.editAuthor),
     path('theAdmin/author/<int:author_id>/update/', views.updateAuthor),
+    path('theAdmin/author/<int:author_id>/writer/update/', views.updateWriter),
     path('theAdmin/author/<int:author_id>/delete/', views.deleteAuthor),
-    path('theAdmin/author/writer/<int:author_id>/update/', views.updateWriter),
     # Admin/Status
     path('theAdmin/status/create/', views.createStatus),
     path('theAdmin/status/<int:status_id>/update/', views.updateStatus),

@@ -60,12 +60,45 @@ def adminBooks(request):
         return redirect('/')
     else:
         user = User.objects.get(id=request.session['user_id'])
+        statuss = Status.objects.all().values().order_by('status')
+        ownerships = Ownership.objects.all().values().order_by('ownership')
+        genres = Genre.objects.all().values().order_by('genre')
+        authors = Author.objects.all().values().order_by('lastName')
+        seriess = Series.objects.all().values().order_by('name')
         books = Book.objects.all().values().order_by('title')
         context = {
             'user': user,
+            'statuss': statuss,
+            'ownerships': ownerships,
+            'genres': genres,
+            'authors': authors,
+            'seriess': seriess,
             'books': books,
         }
         return render(request, 'logged/admin/book.html', context)
+
+def editBook(request, book_id):
+    if 'user_id' not in request.session:
+        messages.error(request, 'Protected Page')
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        book = Book.objects.get(id=book_id)
+        statuss = Status.objects.all().values().order_by('status')
+        ownerships = Ownership.objects.all().values().order_by('ownership')
+        genres = Genre.objects.all().values().order_by('genre')
+        authors = Author.objects.all().values().order_by('lastName')
+        seriess = Series.objects.all().values().order_by('name')
+        context = {
+            'user': user,
+            'statuss': statuss,
+            'ownerships': ownerships,
+            'genres': genres,
+            'authors': authors,
+            'seriess': seriess,
+            'book': book,
+        }
+        return render(request, 'logged/admin/editBook.html', context)
 
 def adminAuthors(request):
     if 'user_id' not in request.session:
@@ -78,7 +111,23 @@ def adminAuthors(request):
             'user': user,
             'authors': authors,
         }
+        print(Author.objects.get(id=1).writer.img)
+        print(Writer.objects.all().values())
         return render(request, 'logged/admin/author.html', context)
+
+def editAuthor(request, author_id):
+    if 'user_id' not in request.session:
+        messages.error(request, 'Protected Page')
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        author = Author.objects.get(id=author_id)
+        context = {
+            'user': user,
+            'author': author,
+        }
+        return render(request, 'logged/admin/editAuthor.html', context)
+
 
 # Create 
 def createStatus(request):
@@ -108,7 +157,7 @@ def createAuthor(request):
         lastName = request.POST['lastName'],
     )
     messages.error(request, 'Author created')
-    return redirect('/theAdmin/')
+    return redirect('/theAdmin/author/')
 
 def createSeries(request):
     Series.objects.create(
@@ -146,7 +195,7 @@ def updateUser(request, user_id):
     toUpdate.lastName = request.POST['lastName']
     toUpdate.save()
     messages.error(request, 'User updated')
-    return redirect('/theAdmin/users/')
+    return redirect('/theAdmin/user/')
 
 def updateAdmin(request, user_id):
     toUpdate = User.objects.get(id=user_id)
@@ -160,7 +209,7 @@ def updatePermission(request, user_id):
     toUpdate.permissions = 1
     toUpdate.save()
     messages.error(request, 'User permissions changed to Contributor')
-    return redirect('/theAdmin/users/')
+    return redirect('/theAdmin/user/')
 
 def updateStatus(request, status_id):
     toUpdate = Status.objects.get(id=status_id)
@@ -189,14 +238,14 @@ def updateAuthor(request, author_id):
     toUpdate.lastName = request.POST['lastName']
     toUpdate.save()
     messages.error(request, "Author updated")
-    return redirect('/theAdmin/authors/')
+    return redirect(f'/theAdmin/author/{author_id}/edit/')
 
 def updateWriter(request, author_id):
     toUpdate = Author.objects.get(id=author_id)
     toUpdate.writer.img = request.FILES['img']
     toUpdate.save()
     messages.error(request, "Author Image updated")
-    return redirect('/theAdmin/authors/')
+    return redirect(f'/theAdmin/author/{author_id}/edit/')
 
 def updateSeries(request, series_id):
     toUpdate = Series.objects.get(id=series_id)
@@ -211,28 +260,28 @@ def updateBook(request, book_id):
     toUpdate.description = request.POST['description']
     toUpdate.save()
     messages.error(request, "Book updated")
-    return redirect('/theAdmin/books/')
+    return redirect(f'/theAdmin/book/{book_id}/edit/')
 
 def updateBookStatus(request, book_id):
     toUpdate = Book.objects.get(id=book_id)
     toUpdate.status_id = request.POST['status']
     toUpdate.save()
     messages.error(request, "Status was updated")
-    return redirect('/theAdmin/books/')
+    return redirect(f'/theAdmin/book/{book_id}/edit/')
 
 def updateBookOwnership(request, book_id):
     toUpdate = Book.objects.get(id=book_id)
     toUpdate.ownership_id = request.POST['ownership']
     toUpdate.save()
     messages.error(request, "Status was updated")
-    return redirect('/theAdmin/books/')
+    return redirect(f'/theAdmin/book/{book_id}/edit/')
 
 def updateStory(request, book_id):
     toUpdate = Book.objects.get(id=book_id)
     toUpdate.story.img = request.FILES['img']
     toUpdate.save()
     messages.error(request, "Book Image updated")
-    return redirect('/theAdmin/books/')
+    return redirect(f'/theAdmin/book/{book_id}/edit/')
 
 
 # Delete
@@ -258,7 +307,7 @@ def deleteAuthor(request, author_id):
     toDelete = Author.objects.get(id=author_id)
     toDelete.delete()
     messages.error(request, 'Author Deleted')
-    return redirect('/theAdmin/')
+    return redirect('/theAdmin/author/')
 
 def deleteSeries(request, series_id):
     toDelete = Series.objects.get(id=series_id)
@@ -270,4 +319,4 @@ def deleteBook(request, book_id):
     toDelete = Book.objects.get(id=book_id)
     toDelete.delete()
     messages.error(request, 'Book Deleted')
-    return redirect('/theAdmin/')
+    return redirect('/theAdmin/book/')
